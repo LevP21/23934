@@ -1,3 +1,0 @@
-chmod 600 test.txt
-chmod g+x task3
-chmod u+s task3

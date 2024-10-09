@@ -1,3 +1,0 @@
-all:
-	gcc 1.c -o main
-	./main -i
