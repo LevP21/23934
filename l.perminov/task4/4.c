@@ -14,12 +14,19 @@ void insert(Node** head, const char* str) {
     Node* new_node = (Node*)malloc(sizeof(Node));
 
     new_node->data = (char*)malloc(strlen(str) + 1);
+    new_node->next = NULL;
 
     strcpy(new_node->data, str);
+    
+    if (*head == NULL) {
+	    *head = new_node;
+    } else {
+    	Node* current = *head;
 
-    new_node->next = *head;
-
-    *head = new_node;
+    	while (current->next != NULL) current = current->next;
+    
+    	current->next = new_node;
+    }
 }
 
 void print_list(Node* head) {
@@ -51,11 +58,13 @@ int main() {
     char buffer[MAX_LENGTH];
 
     while (1) {
-        if (buffer[0] == '.') {
-            break;
-        }
+	fgets(buffer, MAX_LENGTH, stdin);
 
         insert(&head, buffer);
+
+	if (buffer[0] == '.') {
+            break;
+        }
     }
 
     printf("\nEntered strings:\n");

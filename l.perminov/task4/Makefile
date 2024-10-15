@@ -1,0 +1,3 @@
+all:
+	gcc 4.c -o main
+	./main
