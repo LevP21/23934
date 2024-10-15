@@ -12,7 +12,7 @@ int main() {
     setenv("TZ", "PST8PDT", 1);
     tzset();
 
-    (void) time(&now);
+    time(&now);
 
     printf("%s", ctime(&now));
 

@@ -1,0 +1,3 @@
+all:
+	gcc 2.c -o main
+	./main
