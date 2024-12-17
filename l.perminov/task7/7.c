@@ -17,7 +17,6 @@ int main(int argc, char *argv[])
     int count = 0, num = 0, offset = 0, bytes = 0, length = 0;
 
     char line[MAX_LENGTH] = {0};
-    char ch = 0;
 
     struct stat st;
     fstat(fd, &st);
@@ -28,7 +27,7 @@ int main(int argc, char *argv[])
 
     for (int i = 0; i < file_size; ++i)
     {
-        length++;
+	length++;
 
         if (mapped[i] == '\n')
         {
@@ -38,7 +37,7 @@ int main(int argc, char *argv[])
             count++;
             length = 0;
 
-            offset = mapped[i];
+            offset = i;
         }
     }
 
@@ -67,7 +66,7 @@ int main(int argc, char *argv[])
             continue;
         }
 
-        for (int i = offsets[num - 1]; i < offsets[num - 1] + length[num - 1]; ++i)
+        for (int i = offsets[num - 1]; i < offsets[num - 1] + lengths[num - 1]; ++i)
         {
             printf("%c", mapped[i]);
         }

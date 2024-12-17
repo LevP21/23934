@@ -31,6 +31,8 @@ int main(int argc, char *argv[])
     char line[MAX_LENGTH] = {0};
     char ch = 0;
 
+    char flag = 1;
+
     while (read(fd, &ch, 1))
     {
         length++;
@@ -55,7 +57,7 @@ int main(int argc, char *argv[])
         count++;
     }
 
-    while (1)
+    while (flag)
     {
         alarm(5);
 
@@ -87,18 +89,20 @@ int main(int argc, char *argv[])
         }
         else if (timeout)
         {
+	    printf("\n");
+
             for (int i = 0; i < count; ++i)
             {
-                lseek(fd, offsets[num], 0);
+                lseek(fd, offsets[i], 0);
 
-                read(fd, line, lengths[num]);
+                read(fd, line, lengths[i]);
 
-                line[lengths[num]] = '\0';
+                line[lengths[i]] = '\0';
 
                 printf("%s\n", line);
-
-                break;
             }
+
+	    flag = 0;
         }
     }
 
